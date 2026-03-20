@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirador LA PALOMA | Restaurante • Bar • Desde 1987</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-cream: #f3eed8;
+            --brand-gold: #c9a66b;
+            --brand-gold-dark: #a6854b;
+            --brand-red: #8b1e1e;
+            
+            /* Paleta de profundidad */
+            --bg-deep: #050505;
+            --bg-dark: #0e0e0e;
+            --bg-light: #161616;
+            --bg-lighter: #1e1e1e;
+            
+            --text-light: #f5f5f5;
+            --whatsapp-green: #25D366;
+            --whatsapp-dark: #128C7E;
+            
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+
+            /* Efectos de sombra para dar 3D */
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --shadow-strong: 0 15px 40px rgba(0, 0, 0, 0.8);
+            --shadow-gold: 0 8px 25px rgba(201, 166, 107, 0.15);
+            --border-subtle: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Scroll suave para toda la página */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-body);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            border-bottom: 1px solid rgba(201, 166, 107, 0.2);
+        }
+
+        nav .logo-block {
+            display: flex;
+            align-items: center;
+            max-height: 50px; 
+            z-index: 1001; 
+        }
+
+        nav .logo-block .nav-logo-img {
+            height: 40px; 
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Enlaces del menú */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-gold);
+            text-shadow: 0 0 10px rgba(201, 166, 107, 0.3);
+        }
+
+        /* Botón hamburguesa para móvil */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--brand-gold);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* --- BOTÓN WHATSAPP PREMIUM --- */
+        .btn-nav {
+            background: linear-gradient(135deg, var(--whatsapp-green), var(--whatsapp-dark));
+            color: white !important;
+            padding: 10px 24px;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            text-transform: none !important;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+            background: linear-gradient(135deg, #2ae06e, #14998a);
+        }
+
+        .mobile-btn-nav {
+            display: none;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background-color: var(--bg-deep);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden; 
+        }
+
+        /* Estilos para el video de fondo */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Capa oscura sobre el video */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-deep), transparent);
+            z-index: 1;
+        }
+
+        .hero-text-block {
+            margin-bottom: 30px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1.brand-title {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--brand-cream);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.9);
+        }
+
+        .hero .sub-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--brand-gold);
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.9);
+        }
+
+        .hero .tagline-history {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            color: #ccc;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .hero p.highlight {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--brand-cream);
+            background: linear-gradient(90deg, rgba(139,30,30,0) 0%, rgba(139,30,30,0.6) 50%, rgba(139,30,30,0) 100%);
+            padding: 10px 35px;
+            border-top: 1px solid rgba(201, 166, 107, 0.4);
+            border-bottom: 1px solid rgba(201, 166, 107, 0.4);
+            font-weight: 600;
+            margin-bottom: 30px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero p.hero-desc {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 40px;
+            color: #fff;
+            z-index: 2;
+            position: relative;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+        }
+
+        .hero .btn-hero-book {
+            background: linear-gradient(135deg, var(--brand-gold), var(--brand-gold-dark));
+            color: #000;
+            padding: 15px 45px;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(201, 166, 107, 0.3);
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero .btn-hero-book:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(201, 166, 107, 0.5);
+            background: linear-gradient(135deg, #d4b581, var(--brand-gold));
+        }
+
+        /* --- Features --- */
+        .features {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, var(--bg-deep), var(--bg-dark));
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .feature-box {
+            background: linear-gradient(145deg, var(--bg-light), var(--bg-dark));
+            border: var(--border-subtle);
+            padding: 40px 30px;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--brand-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-gold);
+            border-color: rgba(201, 166, 107, 0.3);
+        }
+
+        .feature-box:hover::before {
+            opacity: 1;
+        }
+
+        .feature-box i {
+            font-size: 3rem;
+            color: var(--brand-gold);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(201,166,107,0.2));
+        }
+
+        .feature-box h3 {
+            font-family: var(--font-heading);
+            color: var(--brand-cream);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .feature-box p {
+            font-size: 1rem;
+            color: #bbb;
+        }
+
+        /* --- Zonas y Precios --- */
+        .zones {
+            padding: 100px 5%;
+            background: radial-gradient(circle at top center, var(--bg-light) 0%, var(--bg-deep) 100%);
+            position: relative;
+        }
+
+        .zones h2 {
+            font-family: var(--font-heading);
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--brand-cream);
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .zones > p {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--brand-gold);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .zones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .zone-card {
+            background: linear-gradient(to bottom right, var(--bg-lighter), var(--bg-dark));
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            z-index: 1;
+        }
+
+        .zone-card:hover {
+            border-color: var(--brand-gold);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.9), var(--shadow-gold);
+        }
+
+        .zone-card h3 {
+            font-family: var(--font-heading);
+            color: var(--brand-gold);
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .zone-card .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--brand-cream);
+            font-family: var(--font-heading);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .zone-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .zone-card ul li {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #ddd;
+            display: flex;
+            align-items: center;
+        }
+        .zone-card ul li i {
+            color: var(--brand-gold);
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* --- SECCIÓN DE GALERÍA PROFESIONALIZADA --- */
+        .reviews {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, var(--bg-deep), #0a0a0a);
+            text-align: center;
+            overflow: hidden; 
+            border-top: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .reviews h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--brand-cream);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .reviews > p {
+            color: var(--brand-gold);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 25px;
+            padding: 15px 5px 20px; 
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .review-card {
+            flex: 0 0 320px;
+            scroll-snap-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 166, 107, 0.2); 
+            background-color: #050505; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            box-shadow: var(--shadow-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .review-card:hover {
+            border-color: var(--brand-gold); 
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--shadow-gold);
+        }
+
+        .review-card img {
+            width: 100%;
+            height: 420px;
+            object-fit: contain; 
+            display: block;
+            transition: filter 0.5s ease, transform 0.5s ease;
+            filter: brightness(0.9); 
+        }
+        
+        .review-card:hover img {
+            filter: brightness(1.1); 
+            transform: scale(1.02);
+        }
+
+        .carousel-btn {
+            background: rgba(14, 14, 14, 0.8); 
+            color: var(--brand-gold);
+            border: 1px solid rgba(201, 166, 107, 0.4);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            z-index: 10;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .carousel-btn:hover {
+            background: var(--brand-gold);
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(201, 166, 107, 0.6);
+        }
+
+        .prev-btn { left: -25px; }
+        .next-btn { right: -25px; }
+
+        .carousel-wrapper::before,
+        .carousel-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .carousel-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0) 100%);
+        }
+        
+        .carousel-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #0a0a0a 0%, rgba(10,10,10,0) 100%);
+        }
+
+        .gallery-controls {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .btn-siguiente {
+            background: transparent;
+            color: var(--brand-gold);
+            padding: 14px 35px;
+            border: 1px solid var(--brand-gold);
+            border-radius: 8px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-siguiente:hover {
+            background: var(--brand-gold);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(201, 166, 107, 0.4);
+        }
+
+        /* --- SECCIÓN DE RESERVAS --- */
+        .reservation {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, #0a0a0a, var(--bg-deep));
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .form-container {
+            background: linear-gradient(145deg, var(--bg-light), var(--bg-dark));
+            padding: 60px 50px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 40px rgba(201,166,107,0.05);
+            border: 1px solid rgba(201, 166, 107, 0.15);
+            position: relative;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 10%; right: 10%;
+            height: 2px;
+            background: radial-gradient(circle, var(--brand-gold) 0%, transparent 100%);
+            opacity: 0.5;
+        }
+
+        .form-container h2 {
+            font-family: var(--font-heading);
+            text-align: center;
+            color: var(--brand-cream);
+            margin-bottom: 10px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .form-container > p {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: #aaa;
+        }
+
+        .type-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .type-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 25px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .type-card input[type="radio"] {
+            display: none;
+        }
+
+        .type-card i {
+            font-size: 2.2rem;
+            color: #555;
+            margin-bottom: 15px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .type-card span {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: #888;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .type-card input[type="radio"]:checked + i,
+        .type-card input[type="radio"]:checked ~ span {
+            color: var(--brand-gold);
+            text-shadow: 0 0 15px rgba(201,166,107,0.4);
+        }
+
+        .type-card:has(input[type="radio"]:checked) {
+            border-color: var(--brand-gold);
+            background: rgba(201, 166, 107, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(201,166,107,0.05);
+        }
+
+        .type-card:hover:not(:has(input[type="radio"]:checked)) {
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .datetime-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--brand-gold);
+            font-size: 0.95rem;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--brand-cream);
+            border-radius: 8px;
+            outline: none;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1) sepia(100%) saturate(300%) hue-rotate(350deg);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator:hover,
+        input[type="time"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+
+        .form-group input:focus {
+            border-color: var(--brand-gold);
+            background: rgba(0,0,0,0.6);
+            box-shadow: 0 0 15px rgba(201,166,107,0.15), inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--whatsapp-green), var(--whatsapp-dark));
+            color: white;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(135deg, #2ae06e, #14998a);
+        }
+
+        /* --- SECCIÓN DE UBICACIÓN Y MAPA --- */
+        .location {
+            padding: 100px 5%;
+            background: radial-gradient(circle at bottom left, var(--bg-light) 0%, var(--bg-deep) 100%);
+            border-top: 1px solid rgba(255,255,255,0.02);
+            position: relative;
+        }
+
+        .location-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .location-info h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--brand-cream);
+            margin-bottom: 35px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .location-info .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+            font-size: 1.15rem;
+            color: #ddd;
+            padding: 15px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .location-info .info-item:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(201,166,107,0.2);
+            transform: translateX(5px);
+        }
+
+        .location-info .info-item i {
+            font-size: 1.6rem;
+            color: var(--brand-gold);
+            margin-top: 3px;
+            filter: drop-shadow(0 0 8px rgba(201,166,107,0.3));
+        }
+
+        .location-info .info-item strong {
+            color: var(--brand-cream);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .location-info .info-item .small-text {
+            font-size: 0.95rem;
+            color: #888;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .btn-maps {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(201, 166, 107, 0.1);
+            color: var(--brand-gold);
+            padding: 16px 32px;
+            border: 1px solid var(--brand-gold);
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-maps:hover {
+            background: var(--brand-gold);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(201, 166, 107, 0.4);
+        }
+
+        .location-map {
+            position: relative;
+            padding: 10px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 450px;
+            border-radius: 12px;
+            border: none;
+            display: block;
+        }
+
+        /* --- FOOTER MINIMALISTA --- */
+        .minimal-footer {
+            background: #030303;
+            padding: 60px 5% 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--brand-cream), #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 30px;
+            font-size: 0.85rem;
+            color: #555;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-bottom span.highlight {
+            color: var(--brand-gold);
+            font-weight: 600;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .hero h1.brand-title { font-size: 4rem; }
+            .location-container { grid-template-columns: 1fr; gap: 40px; }
+            .location-map iframe { height: 350px; }
+            .carousel-wrapper::before, .carousel-wrapper::after { display: none; } 
+        }
+
+        @media (max-width: 768px) {
+            .hero h1.brand-title { font-size: 3.2rem; }
+            .hero .sub-title { font-size: 1.2rem; }
+            .hero p.highlight { font-size: 1rem; padding: 10px 20px; }
+            
+            nav { padding: 15px 5%; background: rgba(8, 8, 8, 0.98); }
+            nav .logo-block .nav-logo-img { height: 35px; }
+            
+            .menu-toggle { display: block; }
+            .desktop-btn-nav { display: none; }
+            .mobile-btn-nav { display: flex; margin-top: 15px; justify-content: center; }
+            
+            .nav-links {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #0a0a0a;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out;
+                border-bottom: 2px solid var(--brand-gold);
+            }
+
+            .nav-links.active {
+                max-height: 400px;
+                padding: 10px 0 30px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+
+            .features, .zones, .reviews, .reservation, .location { padding: 80px 5%; }
+            .form-container { padding: 40px 20px; }
+            .reviews h2, .zones h2, .location-info h2 { font-size: 2.2rem; }
+            .datetime-grid { grid-template-columns: 1fr; gap: 0; }
+            
+            .carousel-btn { display: none; } 
+            .review-card { flex: 0 0 85%; scroll-snap-align: center; }
+            
+            .footer-links { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-block">
+            <img src="https://i.postimg.cc/m2kCNz0x/Sin-titulo-1.png" alt="Mirador La Paloma Logo" class="nav-logo-img">
+        </div>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#zonas">Zonas VIP</a></li>
+            <li><a href="#resenas">Galería</a></li>
+            <li><a href="#reservar">Reservar</a></li>
+            <li class="mobile-btn-nav"><a href="#reservar" class="btn-nav"><i class="fa-brands fa-whatsapp"></i> Reservar</a></li>
+        </ul>
+
+        <a href="#reservar" class="btn-nav desktop-btn-nav"><i class="fa-brands fa-whatsapp"></i> Reservar</a>
+    </nav>
+
+    <header class="hero" id="inicio">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="0319.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-text-block">
+            <h1 class="brand-title">LA PALOMA</h1>
+            <h3 class="sub-title">RESTAURANTE • BAR</h3>
+            <p class="tagline-history">DONDE BOGOTÁ SE ASOMA DESDE 1987</p>
+        </div>
+        
+        <p class="highlight">Récord Único en Bogotá: 38 años abriendo todos los días</p>
+        
+        <p class="hero-desc">Descubre el significado de la felicidad en familia con música en vivo de "Yo Me Llamo" todos los días hasta las 3 AM y la vista más cercana y espectacular de Bogotá.</p>
+        
+        <a href="#reservar" class="btn-hero-book">RESERVAR SIN COSTO</a>
+    </header>
+
+    <section class="features" id="servicios">
+        <div class="feature-box">
+            <i class="fa-solid fa-microphone-lines"></i>
+            <h3>Música en Vivo</h3>
+            <p>2 grupos de "Yo Me Llamo" todos los días. Euforia total y dedicatorias personales.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-utensils"></i>
+            <h3>Gastronomía de Altura</h3>
+            <p>Comida de mar, carnes y aves. Gran especialidad marina y platos desde $55.000 COP.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-car"></i>
+            <h3>Parqueadero Gratuito</h3>
+            <p>Ubicados en Bogotá (Cra 7 con 85, 1 min subiendo a la izq). Fácil, cercano y seguro.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-heart"></i>
+            <h3>Ambiente para Todos</h3>
+            <p>Planes familiares, románticos, cumpleaños y grados. Toda tu familia merece lo mejor.</p>
+        </div>
+    </section>
+
+    <section class="zones" id="zonas">
+        <h2>Zonas Exclusivas</h2>
+        <p>Asegura tu experiencia VIP (El consumo de alimentos y bebidas es aparte)</p>
+        <div class="zones-grid">
+            <div class="zone-card">
+                <h3>Zona 1: Cantantes</h3>
+                <div class="price">$200.000</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Ventana y 2da fila</li>
+                    <li><i class="fa-solid fa-check"></i> Pide canciones al cantante</li>
+                    <li><i class="fa-solid fa-check"></i> Solo con plan o decoración</li>
+                </ul>
+            </div>
+            <div class="zone-card">
+                <h3>Zona 2: Ventana VIP</h3>
+                <div class="price">$70k - $100k</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Sin cantante (más tranquila)</li>
+                    <li><i class="fa-solid fa-check"></i> $70.000 (solo pétalos)</li>
+                    <li><i class="fa-solid fa-check"></i> $100.000 (privada y decorada)</li>
+                </ul>
+            </div>
+            <div class="zone-card">
+                <h3>Zona 3: Terraza</h3>
+                <div class="price">$40.000</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Área libre</li>
+                    <li><i class="fa-solid fa-check"></i> Chimenea y fogata</li>
+                    <li><i class="fa-solid fa-check"></i> Sin decoración</li>
+                </ul>
+            </div>
+            <div class="zone-card">
+                <h3>Zona 4: Mirador VIP</h3>
+                <div class="price">$300.000</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Ventana, chimenea y cantante</li>
+                    <li><i class="fa-solid fa-check"></i> Cantante lateral (más privada)</li>
+                    <li><i class="fa-solid fa-check"></i> Solo con plan o decoración</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews" id="resenas">
+        <h2>Nuestra Experiencia</h2>
+        <p>Sabor, Vista y Euforia en un solo lugar</p>
+        
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+            
+            <div class="carousel-container" id="reviewCarousel">
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/QxCY9Mm8/8c9e0a14-1bd1-4b01-87f6-31dae887379c.jpg" alt="Gastronomía La Paloma 1">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/FKyT5krC/01c8209c-0d15-4f30-9d0c-536162ee6e65.jpg" alt="Gastronomía La Paloma 2">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/RhFdHPcj/b99c9b53-4633-4472-8197-1faf81f5e9c1.jpg" alt="Bebidas Especiales">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/J4sK727B/098bf5ff-2042-4d86-8800-1efdcc892232.jpg" alt="Gastronomía La Paloma 3">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/fRXKmS9b/9c5b7280-9d58-41fe-9b06-b7cd077946a2.jpg" alt="Gastronomía La Paloma 4">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/wBQQbK2C/618dfd67-2b48-44e8-b50e-551d37235cf8.jpg" alt="Ambiente Nocturno">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/xCjywsFg/3c3ecd4b-be2c-4e0e-91ba-7d9e118cd1e5.jpg" alt="Gastronomía La Paloma 5">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/D08QZShb/12b5186a-9cba-4015-9a57-c13263ab334a.jpg" alt="Celebraciones y Música">
+                </div>
+                <div class="review-card">
+                    <img src="https://i.postimg.cc/pX5YM5kk/74735de4-6f77-4408-bbb9-b282b9aed590.jpg" alt="Gastronomía La Paloma 6">
+                </div>
+            </div>
+
+            <button class="carousel-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div class="gallery-controls">
+            <button class="btn-siguiente" id="btnSiguienteText">Ver Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <section class="reservation" id="reservar">
+        <div class="form-container">
+            <h2>Configura tu Reserva</h2>
+            <p>Selecciona el tipo de experiencia, fecha y hora. ¡Sin costo de cover!</p>
+            
+            <form id="whatsappForm">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--brand-gold); font-family: var(--font-heading); font-size: 0.95rem; text-align: center; text-transform: uppercase; letter-spacing: 1px;">¿Qué vas a celebrar?</label>
+                
+                <div class="type-selector">
+                    <label class="type-card">
+                        <input type="radio" name="motivo" value="Cita en Pareja / Romántico" required>
+                        <i class="fa-solid fa-champagne-glasses"></i>
+                        <span>En Pareja</span>
+                    </label>
+                    <label class="type-card">
+                        <input type="radio" name="motivo" value="Plan Familiar / Amigos" required>
+                        <i class="fa-solid fa-users"></i>
+                        <span>Familiar</span>
+                    </label>
+                    <label class="type-card">
+                        <input type="radio" name="motivo" value="Celebración (Cumpleaños/Grados)" required>
+                        <i class="fa-solid fa-cake-candles"></i>
+                        <span>Celebración</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre a quien reserva:</label>
+                    <input type="text" id="nombre" required placeholder="Escribe tu nombre completo">
+                </div>
+
+                <div class="datetime-grid">
+                    <div class="form-group">
+                        <label>Día de la reserva:</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora aproximada:</label>
+                        <input type="time" id="hora" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Número de personas:</label>
+                    <input type="number" id="personas" required min="1" placeholder="Ej. 4 personas">
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fa-brands fa-whatsapp"></i> Confirmar Disponibilidad
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section class="location" id="ubicacion">
+        <div class="location-container">
+            <div class="location-info">
+                <h2>Cómo Llegar</h2>
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>km1 via, Bogotá - La Calera, Bogotá, Cundinamarca</strong>
+                        <span class="small-text">(Mirador La Paloma)</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <div>
+                        <strong>Horario de Atención</strong>
+                        <span class="small-text">Todos los días de 1:00 PM a 3:00 AM</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div>
+                        <strong>Línea de Atención</strong>
+                        <span class="small-text">+57 316 8763009 | Info 24 horas</span>
+                    </div>
+                </div>
+                
+                <a href="https://maps.google.com/?q=km1+via,+Bogot%C3%A1+-+La+Calera,+Bogot%C3%A1,+Cundinamarca" target="_blank" class="btn-maps">
+                    <i class="fa-solid fa-map-location-dot"></i> Abrir en Google Maps
+                </a>
+            </div>
+
+            <div class="location-map">
+                <iframe src="https://maps.google.com/maps?q=km1%20via,%20Bogot%C3%A1%20-%20La%20Calera,%20Bogot%C3%A1,%20Cundinamarca&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="minimal-footer">
+        <div class="footer-content">
+            <div class="footer-brand">LA PALOMA</div>
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#zonas">Zonas VIP</a>
+                <a href="#resenas">Galería</a>
+                <a href="#">Privacidad</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Mirador La Paloma. Récord único de 38 años abierto.</span>
+            <span class="highlight">DONDE BOGOTÁ SE ASOMA DESDE 1987</span>
+        </div>
+    </footer>
+
+    <script>
+        // --- MENÚ RESPONSIVO ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- CARRUSEL DE RESEÑAS PROFESIONAL ---
+        const carousel = document.getElementById('reviewCarousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const btnSiguienteText = document.getElementById('btnSiguienteText');
+
+        function getScrollAmount() {
+            if (window.innerWidth <= 768) {
+                return carousel.offsetWidth * 0.85 + 25; 
+            } else {
+                return 320 + 25; 
+            }
+        }
+
+        // Funciones para desplazar imágenes
+        nextBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+        
+        // El nuevo botón inferior hace lo mismo que la flecha "siguiente"
+        btnSiguienteText.addEventListener('click', () => {
+            carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+
+        // --- FORMULARIO WHATSAPP ---
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+            const personas = document.getElementById('personas').value;
+            
+            const radioMotivo = document.querySelector('input[name="motivo"]:checked');
+            const motivoSeleccionado = radioMotivo ? radioMotivo.value : "No especificado";
+            
+            const telefono = "573168763009"; 
+            
+            const mensaje = `Hola La Paloma, deseo hacer una reserva sin costo. Aquí mis datos:\n\n*Nombre:* ${nombre}\n*Día:* ${fecha}\n*Hora:* ${hora}\n*# de PERSONAS:* ${personas}\n*MOTIVO CELEBRACION:* ${motivoSeleccionado}\n\nQuedo atento a la confirmación de disponibilidad.`;
+            
+            const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+            
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>
